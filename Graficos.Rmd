@@ -1,0 +1,773 @@
+---
+title: "Análisis exploratorio"
+author: "Yosri"
+date: "30/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## HAKESOTH
+```{r echo=TRUE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+Database<-read.csv("HAKESOTH.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1978,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1978,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1978,2018)
+
+```
+
+## HAKENRTN
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("HAKENRTN.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1978,2018)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1978,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1978,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "Tasa de explotacion",colour = "A.f1.o")+xlim(1978,2018)
+```
+
+
+## HAKEMEDGSA1-7
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+Database<-read.csv("HAKEMEDGSA1-7.csv",header = TRUE, sep= ";", encoding="UTF-8")
+
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2013,2014)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")+xlim(2013,2014)
+lines(Database$A.f1.o,Database$Ctrend, col="red")+xlim(2013,2014)
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2013,2014)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2013,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2013,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "Tasa de explotacion",colour = "A.f1.o")+xlim(2013,2014)
+
+```
+
+
+## ANGLMEDGSA5
+```{r echo=FALSE, warning=FALSE}
+
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("ANGLMEDGSA5.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2003,2013)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La Mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep ",colour = "A.f1.o")+xlim(2003,2013)
+
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion  en función del tiempo") +labs(x = "año",y = "Tasa de explotacion",colour = "A.f1.o")+xlim(2003,2013)
+
+
+```
+
+
+## ANGLMEDGSA6
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("ANGLMEDGSA6.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2004,2013)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La Mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep ",colour = "A.f1.o")+xlim(2004,2013)
+
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion  en función del tiempo") +labs(x = "año",y = "Tasa de explotacion",colour = "A.f1.o")+xlim(2004,2013)
+
+
+```
+
+
+## ANGLMEDGSA7
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("ANGLMEDGSA6.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2004,2013)
+
+
+
+
+
+```
+
+
+
+## ANGLVIIIc-Ixa
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("ANGLVIIIc-Ixa.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1980,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend  ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1980,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+
+ggplot(Database, aes(x = A.f1.o, y = FF  ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1980,2018)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend  ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "Tasa de explotacion",colour = "A.f1.o")+xlim(1980,2018)
+
+```
+
+
+## ANGLVII-VIIIabd
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("ANGLVII-VIIIabd.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend  ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2003,2018)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend  ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion ",colour = "A.f1.o")+xlim(2003,2018)
+```
+
+
+## WANGLVIIIc-IXa
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("WANGLVIIIc-IXa.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1980,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1980,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1980,2018)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1980,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1980,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1980,2018)
+
+```
+
+
+## WANGLVII-VIIIabd
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("WANGLVII-VIIIabd.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1986,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1986,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1986,2018)
+
+```
+
+
+## MEG8c9a
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("MEG8c9a.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1986,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1986,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1986,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1986,2018)
+```
+
+
+## MEGSPPIVa-VIa
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("MEGSPPIVa-VIa.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1985,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1985,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1985,2018)
+```
+
+
+## MEGVII-VIIIabd
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("MEGVII-VIIIabd.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1984,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1984,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1984,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1984,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1984,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1984,2018)
+```
+
+
+## RDSHRMPMEDGSA1
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RDSHRMPMEDGSA1.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2002,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2002,2014)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2002,2014)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2002,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2002,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2002,2014)
+```
+
+
+## RDSHRMPMEDGSA6
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RDSHRMPMEDGSA6.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1996,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1996,2014)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1996,2014)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1996,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1996,2014)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1996,2014)
+```
+
+
+## RMULLMEDGSA1
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RMULLMEDGSA1.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2003,2013)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2003,2013)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2003,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2003,2013)
+```
+
+
+## RMULLMEDGSA5
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RMULLMEDGSA5.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2000,2012)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2000,2012)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2000,2012)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2000,2012)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2000,2012)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2000,2012)
+```
+
+
+## RMULLMEDGSA6
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RMULLMEDGSA6.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2002,2013)
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2002,2013)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2002,2013)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2002,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2002,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2002,2013)
+```
+
+
+## RMULLMEDGSA7
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("RMULLMEDGSA7.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2004,2013)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2004,2013)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2004,2013)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2004,2013)
+```
+
+
+
+## SARDMEDGSA6
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("SARDMEDGSA6.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2003,2015)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2003,2015)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2003,2015)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2003,2015)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2003,2015)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(2003,2015)
+```
+
+
+## SARDMEDGSA7
+```{r echo=FALSE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+
+Database<-read.csv("SARDMEDGSA7.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1993,2012)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1993,2012)
+
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1993,2012)
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1993,2012)
+```
+
+
+## SARDPVIIIc-IXa
+```{r echo=TRUE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+Database<-read.csv("SARDPVIIIc-IXa.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1978,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(1978,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(1978,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Utrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La tasa de explotacion en función del tiempo") +labs(x = "año",y = "La Tasa de explotacion",colour = "A.f1.o")+xlim(1978,2018)
+
+```
+
+
+## SARDVII
+```{r echo=TRUE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+Database<-read.csv("SARDVII.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(1978,2018)
+
+
+```
+
+
+## SARDVIIIabd
+```{r echo=TRUE, warning=FALSE}
+setwd("C:/Users/zanni/Desktop/TFM/TFMYosri")
+Database<-read.csv("SARDVIIIabd.csv",header = TRUE, sep= ";", encoding="UTF-8")
+Database$Btrend<-as.numeric(Database$Btrend)
+Database$U<-as.numeric(Database$U)
+Database$BvB<-as.numeric(Database$BvB)
+Database$BvT<-as.numeric(Database$BvT)
+Database$Utrend<-as.numeric(Database$Utrend)
+Database$CvMEANC<-as.numeric(Database$CvMEANC)
+summary(Database)
+library("ggplot2")
+
+
+ggplot(Database, aes(x = A.f1.o, y = Btrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa en función del tiempo") +labs(x = "año",y = "Biomasa",colour = "A.f1.o")+xlim(2002,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = Ctrend ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La captura en función del tiempo") +labs(x = "año",y = "Captura",colour = "A.f1.o")+xlim(2002,2018)
+
+plot(Database$A.f1.o,Database$Btrend,main="Captura y biomasa en funcion del tiempo",ylab="",xlab ="Año",type="l",col="blue")
+lines(Database$A.f1.o,Database$Ctrend, col="red")
+legend("topleft",c("Biomasa","Capturas"),fill=c("blue","red"))
+
+ggplot(Database, aes(x = A.f1.o, y = FF ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La mortalidad en función del tiempo") +labs(x = "año",y = "Mortalidad",colour = "A.f1.o")+xlim(2002,2018)
+
+
+ggplot(Database, aes(x = A.f1.o, y = R ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("el Reclutamiento en función del tiempo") +labs(x = "año",y = "Reclutamiento",colour = "A.f1.o")+xlim(2002,2018)
+
+ggplot(Database, aes(x = A.f1.o, y = SSB ,na.rm = TRUE )) + geom_point()+ geom_smooth()+ggtitle("La biomasa rep en función del tiempo") +labs(x = "año",y = "Biomasa rep",colour = "A.f1.o")+xlim(2002,2018)
+
+
+
+```
+
+
