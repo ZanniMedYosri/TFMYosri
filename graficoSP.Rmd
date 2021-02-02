@@ -14,6 +14,11 @@ Maintenant on va ajouter la  Prediction, et on va voir les Graphes
 
 ## Merluza NORTH
 
+Los Graficos  del Ices nos permiten entender bien la tendencia del SP y de la biomasa 
+Si vemos los datos de capturas, históricamente son alrededor de 50 mil Toneladas, hubo una caída en el año 2000. pero después un aumento muy grande que alcanza 100 mil toneladas. cuanto al reclutamiento, ha sido más o menos estables con varios picos esporádicos por ejemplo en 1985 y 2008. La mortalidad por pesca ha sido muy alta históricamente. ya podemos ver que el stock ha sido sobre explotado hasta 2005. Y a partir de 2005la densidad de pesca ha bajado hasta que la mortalidad se estableció en los niveles que producen el rendimiento máximo. y para ver cómo ha respondido la biomasa, históricamente estaba a niveles sostenibles luego cayó por debajo de estos niveles. En 2008 aumento significativamente.
+La figura de SP nos muestra una tendencia histórica que fluctúa alrededor de 50 000 T y una biomasa relativamente pequeña, cuando la mortalidad por esca empezó a disminuir vemos que El SP y Biomasa aumentaron significativamente eso debido al aumento de las capturas de aumento cuando la mortalidad por pesca disminuyó. eso no deja preguntar el origen de este aumento grande de la captura que normalmente deberían disminuir. entonces una hipótesis es que hubo un cambio ambiental importante 
+
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -275,3 +280,160 @@ lines(av, bv, col="red", type="l")
 
 ```
 
+
+On Va quitter des années chaque fois pour mieux comprendre .
+
+ ## Merluza Norte 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Read data
+Database<-read.csv("Hake.csv",header = TRUE, sep= ";", encoding="UTF-8")
+z<-subset(Database, Database[,17] == "hke.27.3a46-8abd")
+df <- data.frame(x = z$SSB, y = z$SP)
+Database1<-read.csv("Hake2015.csv",header = TRUE, sep= ";", encoding="UTF-8")
+B<-subset(Database1, Database1[,17] == "hke.27.3a46-8abd")
+df0 <- data.frame(x = B$SSB, y = B$SP)
+Database2<-read.csv("Hake2011.csv",header = TRUE, sep= ";", encoding="UTF-8")
+i<-subset(Database2, Database2[,17] == "hke.27.3a46-8abd")
+df1 <- data.frame(x = i$SSB, y = i$SP)
+Database3<-read.csv("Hake2007.csv",header = TRUE, sep= ";", encoding="UTF-8")
+j<-subset(Database3, Database3[,17] == "hke.27.3a46-8abd")
+df2 <- data.frame(x = j$SSB, y = j$SP)
+# Fit model
+model <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df)
+summary(model)
+model0 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df0)
+summary(model0)
+model1 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df1)
+summary(model1)
+model2 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df2)
+summary(model2)
+ 
+# Predict figures
+av <- seq(0, max(z$SSB)*1.5, by=100)
+bv <- predict(model, newdata=(list(x=av))) 
+av0 <- seq(0, max(B$SSB)*1.5, by=100)
+
+bv0 <- predict(model0, newdata=(list(x=av0)))
+av1 <- seq(0, max(i$SSB)*1.5, by=100)
+bv1 <- predict(model1, newdata=(list(x=av1)))
+av2 <- seq(0, max(j$SSB)*1.5, by=100)
+bv2 <- predict(model2, newdata=(list(x=av2)))   
+
+xMax0 <- max(av0[max(which(bv0>0))+1], max(B$SSB)) 
+# Plot
+
+a <- seq(length(z$SSB) - 1)
+Firstyea<-subset(z, z[,1] == "1978")
+Lastyea<-subset(z, z[,1] == "2018")
+plot(z$SSB, z$SP, pch=15,  xlab="ssb", ylab="Surplus Production",xlim=c(0, xMax0), ylim=c(0, max(bv0)*2.8),type="b", col="red")
+arrows(z$SSB[a], z$SP[a], z$SSB[a + 1], z$SP[a + 1],length = 0.1,col="black", angle = 10) 
+points(Firstyea$SSB,Firstyea$SP,pch = 21, cex=2, col="blue",bg="blue",lwd=2)
+points(Lastyea$SSB,Lastyea$SP,pch = 24, cex=2, col="blue",bg="blue",lwd=2)
+lines(av, bv, col="blue", type="l")
+legend("topleft",c("2018","2015","2011","2007"),fill=c("blue","Purple","Yellow","Green"))
+par(new=TRUE)
+
+# Hasta 2015
+# Plot
+
+
+Lastyea0<-subset(B, B[,1] == "2015")
+
+points(Lastyea0$SSB,Lastyea0$SP,pch = 24, cex=2, col="Purple",bg="Purple",lwd=2)
+lines(av0, bv0, col="Purple", type="l")
+par(new=TRUE)
+# Hasta 2011
+# Plot
+
+Lastyea1<-subset(i, i[,1] == "2011")
+
+points(Lastyea1$SSB,Lastyea1$SP,pch = 24, cex=2, col="Yellow",bg="Yellow",lwd=2)
+lines(av1, bv1, col="Yellow", type="l")
+par(new=TRUE)
+
+# Plot
+Lastyea2<-subset(j, j[,1] == "2007")
+points(Lastyea2$SSB,Lastyea2$SP,pch = 24, cex=2, col="Green",bg="Green",lwd=2)
+lines(av2, bv2, col="Green", type="l")
+
+
+```
+
+
+ ## Merluza Sur
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Read data
+Database<-read.csv("Hake.csv",header = TRUE, sep= ";", encoding="UTF-8")
+z<-subset(Database, Database[,17] == "hke.27.8c9a")
+df <- data.frame(x = z$SSB, y = z$SP)
+Database1<-read.csv("Hake2015.csv",header = TRUE, sep= ";", encoding="UTF-8")
+B<-subset(Database1, Database1[,17] == "hke.27.8c9a")
+df0 <- data.frame(x = B$SSB, y = B$SP)
+Database2<-read.csv("Hake2011.csv",header = TRUE, sep= ";", encoding="UTF-8")
+i<-subset(Database2, Database2[,17] == "hke.27.8c9a")
+df1 <- data.frame(x = i$SSB, y = i$SP)
+Database3<-read.csv("Hake2007.csv",header = TRUE, sep= ";", encoding="UTF-8")
+j<-subset(Database3, Database3[,17] == "hke.27.8c9a")
+df2 <- data.frame(x = j$SSB, y = j$SP)
+# Fit model
+model <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df)
+summary(model)
+model0 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df0)
+summary(model0)
+model1 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df1)
+summary(model1)
+model2 <- nls(y~a*x + b*x^2, start=list(a=1.4, b=-0.0000226), data=df2)
+summary(model2)
+
+# Predict figures
+av <- seq(0, max(z$SSB)*1.5, by=100)
+bv <- predict(model, newdata=(list(x=av))) 
+av0 <- seq(0, max(B$SSB)*1.5, by=100)
+
+bv0 <- predict(model0, newdata=(list(x=av0)))
+av1 <- seq(0, max(i$SSB)*1.5, by=100)
+bv1 <- predict(model1, newdata=(list(x=av1)))
+av2 <- seq(0, max(j$SSB)*1.5, by=100)
+bv2 <- predict(model2, newdata=(list(x=av2)))   
+
+xMax0 <- max(av0[max(which(bv0>0))+1], max(B$SSB)) 
+# Plot
+
+a <- seq(length(z$SSB) - 1)
+Firstyea<-subset(z, z[,1] == "1982")
+Lastyea<-subset(z, z[,1] == "2018")
+plot(z$SSB, z$SP, pch=15,  xlab="ssb", ylab="Surplus Production",xlim=c(0, xMax0), ylim=c(0, max(bv0)*2.8),type="b", col="red")
+arrows(z$SSB[a], z$SP[a], z$SSB[a + 1], z$SP[a + 1],length = 0.1,col="black", angle = 10) 
+points(Firstyea$SSB,Firstyea$SP,pch = 21, cex=2, col="blue",bg="blue",lwd=2)
+points(Lastyea$SSB,Lastyea$SP,pch = 24, cex=2, col="blue",bg="blue",lwd=2)
+lines(av, bv, col="blue", type="l")
+legend("topleft",c("2018","2015","2011","2007"),fill=c("blue","Purple","Yellow","Green"))
+par(new=TRUE)
+
+# Hasta 2015
+# Plot
+
+
+Lastyea0<-subset(B, B[,1] == "2015")
+
+points(Lastyea0$SSB,Lastyea0$SP,pch = 24, cex=2, col="Purple",bg="Purple",lwd=2)
+lines(av0, bv0, col="Purple", type="l")
+par(new=TRUE)
+# Hasta 2011
+# Plot
+
+Lastyea1<-subset(i, i[,1] == "2011")
+
+points(Lastyea1$SSB,Lastyea1$SP,pch = 24, cex=2, col="Yellow",bg="Yellow",lwd=2)
+lines(av1, bv1, col="Yellow", type="l")
+par(new=TRUE)
+
+# Plot
+Lastyea2<-subset(j, j[,1] == "2007")
+points(Lastyea2$SSB,Lastyea2$SP,pch = 24, cex=2, col="Green",bg="Green",lwd=2)
+lines(av2, bv2, col="Green", type="l")
+
+```
